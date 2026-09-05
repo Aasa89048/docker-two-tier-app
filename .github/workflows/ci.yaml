@@ -64,6 +64,6 @@ jobs:
         with:
           command: cves
           image: local://docker-two-tier-app:ci
-          only-severity: critical,high
+          only-severities: critical,high
           exit-code: true
           summary: true
