@@ -11,9 +11,7 @@ i automated all that (image build optimization,reliability,security,) through a 
 ## Created Dockerfile 
 
 - I used **multi-stage builds** to avoid unnecessary files and dependencies in the final image, keeping the production image smaller.
-
 - I structured the Dockerfile so that the parts that change frequently are placed later. This allows Docker to reuse the already cached layers and makes rebuilds faster.
-
 - I run the container as a **non-root user** to improve container security.
   
 ![Project Structure](screenshots/dockerfile.png)
