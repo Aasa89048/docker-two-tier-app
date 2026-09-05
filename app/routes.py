@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 
-from .db import get_db_connection
+from .db import get_db_connection, init_db
+init_db()
 
 
 api = Blueprint("api", __name__)
@@ -8,6 +9,7 @@ api = Blueprint("api", __name__)
 
 @api.get("/health")
 def health():
+
     return jsonify({
         "status": "healthy"
     }), 200
@@ -15,6 +17,7 @@ def health():
 
 @api.get("/tasks")
 def get_tasks():
+    init_db()  # Ensure the database is initialized before fetching tasks
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
@@ -32,6 +35,7 @@ def get_tasks():
 
 @api.get("/tasks/<int:task_id>")
 def get_task(task_id):
+    init_db()  # Ensure the database is initialized before fetching the task
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
@@ -55,6 +59,7 @@ def get_task(task_id):
 
 @api.post("/tasks")
 def create_task():
+    init_db()  # Ensure the database is initialized before creating a task
     data = request.get_json()
 
     if not data or not data.get("title"):
@@ -88,6 +93,7 @@ def create_task():
 
 @api.put("/tasks/<int:task_id>")
 def update_task(task_id):
+    init_db()  # Ensure the database is initialized before updating the task
     data = request.get_json()
 
     if not data:
@@ -132,6 +138,7 @@ def update_task(task_id):
 
 @api.delete("/tasks/<int:task_id>")
 def delete_task(task_id):
+    init_db()  # Ensure the database is initialized before deleting the task
     connection = get_db_connection()
     cursor = connection.cursor()
 
