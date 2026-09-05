@@ -24,7 +24,6 @@ def test_database_connection():
 
 def test_create_and_read_task():
     init_db()
-
     app = create_app()
     client = app.test_client()
 

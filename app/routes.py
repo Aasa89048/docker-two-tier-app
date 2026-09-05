@@ -17,13 +17,16 @@ def health():
 
 @api.get("/tasks")
 def get_tasks():
-    init_db()  # Ensure the database is initialized before fetching tasks
+    init_db()  
     connection = get_db_connection()
+
     cursor = connection.cursor(dictionary=True)
 
     cursor.execute(
+
         "SELECT id, title, completed FROM tasks ORDER BY id"
     )
+
 
     tasks = cursor.fetchall()
 
@@ -35,7 +38,7 @@ def get_tasks():
 
 @api.get("/tasks/<int:task_id>")
 def get_task(task_id):
-    init_db()  # Ensure the database is initialized before fetching the task
+    init_db()  
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
@@ -59,7 +62,7 @@ def get_task(task_id):
 
 @api.post("/tasks")
 def create_task():
-    init_db()  # Ensure the database is initialized before creating a task
+    init_db()  
     data = request.get_json()
 
     if not data or not data.get("title"):
@@ -93,7 +96,7 @@ def create_task():
 
 @api.put("/tasks/<int:task_id>")
 def update_task(task_id):
-    init_db()  # Ensure the database is initialized before updating the task
+    init_db()  
     data = request.get_json()
 
     if not data:
@@ -138,7 +141,7 @@ def update_task(task_id):
 
 @api.delete("/tasks/<int:task_id>")
 def delete_task(task_id):
-    init_db()  # Ensure the database is initialized before deleting the task
+    init_db()  
     connection = get_db_connection()
     cursor = connection.cursor()
 
