@@ -25,4 +25,4 @@ The project focuses on Docker image optimization, container security, reliabilit
 
 ## Adding the ci
 
-![Docker Compose](ci/compose.png)
+![adding the ci](screenshots/compose.png)
