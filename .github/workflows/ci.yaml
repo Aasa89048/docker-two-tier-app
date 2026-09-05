@@ -48,7 +48,7 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
 
       - name: Run tests
-        run: python -m pytest
+        run:  python -m pytest -q
 
       - name: Build Docker image
         run: docker build --file app/dockerfile --tag docker-two-tier-app:ci .
