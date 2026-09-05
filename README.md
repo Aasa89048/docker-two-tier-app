@@ -27,7 +27,7 @@ The project demonstrates practical **DevOps and cloud engineering practices**, i
 
 - I added **healthchecks** to make sure the app and database are healthy, not just running.
 - I created a **named volume** to persist database data beyond the container lifecycle.
-- i added**Dependency conditions** prevent the application from starting before MySQL is healthy.
+- i added **Dependency conditions** prevent the application from starting before MySQL is healthy.
 
 ![Docker Compose](screenshots/compose.png)
 
@@ -45,6 +45,6 @@ The pipeline performs the following steps:
 
 This creates an automated quality and security gate before changes are considered ready for deployment.
 
-![adding the ci](screenshots/compose.png)
+![adding the ci](screenshots/ci.png)
 ---
 ![the ci testing](screenshots/testsinactions.png)
