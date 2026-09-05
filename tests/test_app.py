@@ -1,10 +1,8 @@
 from app import create_app
-from app.db import get_db_connection
-from app.db import init_db
+from app.db import get_db_connection, init_db
 
 
 def test_health_check():
-    init_db()  # Ensure the database is initialized before running the test
     app = create_app()
     client = app.test_client()
 
@@ -15,8 +13,9 @@ def test_health_check():
 
 
 def test_database_connection():
+    init_db()
+
     connection = get_db_connection()
-    
 
     assert connection.is_connected()
 
@@ -24,7 +23,8 @@ def test_database_connection():
 
 
 def test_create_and_read_task():
-    init_db()  # Ensure the database is initialized before running the test
+    init_db()
+
     app = create_app()
     client = app.test_client()
 
