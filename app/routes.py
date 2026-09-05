@@ -11,7 +11,7 @@ api = Blueprint("api", __name__)
 def health():
 
     return jsonify({
-        "status": "healthyy"
+        "status": "healthy"
     }), 200
 
 
