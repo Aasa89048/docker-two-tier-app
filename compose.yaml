@@ -32,4 +32,5 @@ services:
      - mysql_data:/var/lib/mysql
     restart: unless-stopped 
 volumes:
-    mysql_data: 
+    mysql_data:
+    
