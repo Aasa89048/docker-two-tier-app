@@ -22,3 +22,7 @@ The project focuses on Docker image optimization, container security, reliabilit
 - I created a volume to persist database data beyond the container lifecycle.
 
 ![Docker Compose](screenshots/compose.png)
+
+## Adding the ci
+
+![Docker Compose](ci/compose.png)
