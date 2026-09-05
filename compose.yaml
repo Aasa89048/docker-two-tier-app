@@ -1,20 +1,26 @@
 services:
   app:
-   build:
-     context: .
-     dockerfile: app/dockerfile
-   container_name: app_container
-   ports:
-     - "5000:5000"
-   env_file:
-     - .env
-   depends_on:
-     db:
-       condition: service_healthy
-   restart: unless-stopped
+    build:
+      context: .
+      dockerfile: app/dockerfile
+    container_name: app_container
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/api/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
   db:
     image: mysql:8.0
-    container_name: db_conatainer
+    container_name: db_container
     env_file:
       - .env.db
     healthcheck:

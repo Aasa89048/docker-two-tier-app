@@ -15,3 +15,10 @@ The project focuses on Docker image optimization, container security, reliabilit
 - I run the container as a **non-root user** to improve container security.
   
 ![Project Structure](screenshots/dockerfile.png)
+
+## Docker Compose
+
+- I added healthchecks to make sure the app and database are healthy, not just running.
+- I created a volume to persist database data beyond the container lifecycle.
+
+![Docker Compose](screenshots/compose.png)
