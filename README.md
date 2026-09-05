@@ -7,3 +7,7 @@ i automated all that (image build optimization,reliability,security,) through a 
 ## Project Structure
 
 ![Project Structure](screenshots/project-structure.png)
+
+## Created Dockerfile 
+
+![Project Structure](screenshots/dockerfile.png)
