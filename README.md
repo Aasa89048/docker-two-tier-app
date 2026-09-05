@@ -7,9 +7,7 @@ i automated all that (image build optimization,reliability,security,) through a 
 ## Project Structure
 
 ![Project Structure](screenshots/project-structure.png)
-
-
-
+<br>
 ## Created Dockerfile 
 
 - I used **multi-stage builds** to avoid unnecessary files and dependencies in the final image, keeping the production image smaller.
