@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from .db import get_db_connection
+from .db import get_db_connection, init_db
 
 
 api = Blueprint("api", __name__)
@@ -15,6 +15,7 @@ def health():
 
 @api.get("/tasks")
 def get_tasks():
+    init_db()
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
@@ -32,6 +33,7 @@ def get_tasks():
 
 @api.get("/tasks/<int:task_id>")
 def get_task(task_id):
+    init_db()
     connection = get_db_connection()
     cursor = connection.cursor(dictionary=True)
 
@@ -64,6 +66,7 @@ def create_task():
 
     title = data["title"]
 
+    init_db()
     connection = get_db_connection()
     cursor = connection.cursor()
 
@@ -95,6 +98,7 @@ def update_task(task_id):
             "error": "request body is required"
         }), 400
 
+    init_db()
     connection = get_db_connection()
     cursor = connection.cursor()
 
@@ -132,6 +136,7 @@ def update_task(task_id):
 
 @api.delete("/tasks/<int:task_id>")
 def delete_task(task_id):
+    init_db()
     connection = get_db_connection()
     cursor = connection.cursor()
 
