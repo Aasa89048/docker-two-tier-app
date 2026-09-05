@@ -1,6 +1,8 @@
-service:
+services:
   app:
-    build: /home/ahmed-abdalrahman/Desktop/docker two-tier app/app/dockerfile
+  build:
+    context: .
+    dockerfile: app/dockerfile
     container_name: app_container
     ports:
       - "5000:5000"
@@ -14,12 +16,14 @@ service:
     image: mysql:8.0
     container_name: db_conatainer
     env_file:
-      - .env
+      - .env.db
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5 
     volumes:
-     -mysql_data:var/lib/mysql
+     -mysql_data:/var/lib/mysql
     restart: unless-stopped 
+  volumes:
+    mysql_data: 
