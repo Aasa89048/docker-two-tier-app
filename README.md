@@ -4,12 +4,31 @@ A containerized two-tier web application built with **Flask and MySQL**, designe
 
 The project implements automated testing, Docker image security scanning, versioned container image publishing, and a deployment-ready architecture that can be extended to AWS cloud infrastructure.
 
-# Docker Two-Tier Flask Application
+## architecture 
 
-A containerized two-tier web application built with **Flask and MySQL**, designed to demonstrate **cloud-ready application deployment, containerization, CI/CD automation, and DevSecOps practices**.
-
-The project implements automated testing, Docker image security scanning, versioned container image publishing, and a deployment-ready architecture that can be extended to AWS cloud infrastructure.
-
+Runtime:
+```text
+Client
+  ↓
+Flask Container
+  ↓
+MySQL Container
+  ↓
+Persistent Volume
+```
+Delivery:
+```text
+GitHub
+  ↓
+GitHub Actions
+  ├── Tests
+  ├── Docker Build
+  └── Docker Scout
+       ↓
+      CD
+       ↓
+   Docker Hub
+```
 ## Technologies
 
 | Category | Technologies |
@@ -52,21 +71,20 @@ The project implements automated testing, Docker image security scanning, versio
 ```bash
 git clone https://github.com/Aasa89048/docker-two-tier-app.git
 cd docker-two-tier-app
-```
 docker compose up --build
-
+```
 The API will be available at:
-
+```bash
 http://localhost:5000
-
+```
 Health check:
-
+```bash
 http://localhost:5000/api/health
-
+```
 Stop the application:
-
+```bash
 docker compose down
-
+```
 
 ## Project Structure
 
