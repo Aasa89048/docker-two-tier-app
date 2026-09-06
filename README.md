@@ -52,7 +52,7 @@ The project implements automated testing, Docker image security scanning, versio
 ```bash
 git clone https://github.com/Aasa89048/docker-two-tier-app.git
 cd docker-two-tier-app
-
+```
 docker compose up --build
 
 The API will be available at:
