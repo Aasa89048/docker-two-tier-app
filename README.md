@@ -48,3 +48,25 @@ This creates an automated quality and security gate before changes are considere
 ![adding the ci](screenshots/ci.png)
 ---
 ![the ci testing](screenshots/testsinactions.png)
+
+
+## Continuous Deployment (CD)
+
+- I created a separate **CD workflow** using GitHub Actions to automatically build and publish the Docker image to Docker Hub whenever changes are pushed to the `main` branch.
+
+- I used **Docker Buildx** to build the production image and **GitHub Secrets** to securely authenticate with Docker Hub.
+
+- I configured **versioned image tags** using the Git commit SHA along with the `latest` tag, making it easier to track releases and identify the exact version of an image.
+
+- The workflow creates a **reproducible deployment artifact** that can be pulled and deployed to a cloud environment.
+
+![CD Pipeline](screenshots/cd.png)
+
+- Github CD workflow
+
+![Github workflow](screenshots/githubcd.png)
+
+- Dockerhub repo with the pushed images
+
+![dockerhub images](screenshots/dockerhub.png)
+
