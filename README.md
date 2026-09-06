@@ -1,21 +1,78 @@
 # Docker Two-Tier Flask Application
 
-A production-oriented two-tier Flask application with MySQL, containerized using Docker and Docker Compose.
+A containerized two-tier web application built with **Flask and MySQL**, designed to demonstrate **cloud-ready application deployment, containerization, CI/CD automation, and DevSecOps practices**.
 
-The project demonstrates practical **DevOps and cloud engineering practices**, including:
-- Multi-stage Docker builds
-- Non-root containers
-- Container healthchecks
-- Persistent database storage
-- Automated testing with GitHub Actions
-- Docker image vulnerability scanning with Docker Scout
-- Secure credential management using GitHub Actions Secrets
+The project implements automated testing, Docker image security scanning, versioned container image publishing, and a deployment-ready architecture that can be extended to AWS cloud infrastructure.
+
+# Docker Two-Tier Flask Application
+
+A containerized two-tier web application built with **Flask and MySQL**, designed to demonstrate **cloud-ready application deployment, containerization, CI/CD automation, and DevSecOps practices**.
+
+The project implements automated testing, Docker image security scanning, versioned container image publishing, and a deployment-ready architecture that can be extended to AWS cloud infrastructure.
+
+## Technologies
+
+| Category | Technologies |
+|---|---|
+| Application | Python, Flask |
+| Database | MySQL |
+| Containerization | Docker, Docker Compose |
+| CI/CD | GitHub Actions |
+| Testing | Pytest |
+| Security | Docker Scout |
+| Registry | Docker Hub |
+| Configuration | Environment Variables, GitHub Secrets |
+| Storage | Docker Named Volumes |
+| Web Server | Gunicorn |
+| OS / Runtime | Linux, Python 3.12 |
+
+
+## Security
+
+- I run the production container as a **non-root user** to reduce container privileges.
+
+- I use **GitHub Secrets** for Docker Hub authentication rather than storing credentials in the repository.
+
+- I use **Docker Scout** to scan container images for known vulnerabilities.
+
+- Sensitive local configuration files such as `.env` and `.env.db` are excluded from version control using `.gitignore`.
+
+
+
+## Run Locally
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+- Git
+
+### Start the application
+
+```bash
+git clone https://github.com/Aasa89048/docker-two-tier-app.git
+cd docker-two-tier-app
+
+docker compose up --build
+
+The API will be available at:
+
+http://localhost:5000
+
+Health check:
+
+http://localhost:5000/api/health
+
+Stop the application:
+
+docker compose down
+
 
 ## Project Structure
 
 ![Project Structure](screenshots/project-structure.png)
 
-## Created Dockerfile 
+## Application Containerization
 
 - I used **multi-stage builds** to avoid unnecessary files and dependencies in the final image, keeping the production image smaller.
 - I structured the Dockerfile so that the parts that change frequently are placed later. This allows Docker to reuse the already cached layers and makes rebuilds faster.
@@ -23,12 +80,17 @@ The project demonstrates practical **DevOps and cloud engineering practices**, i
   
 ![Project Structure](screenshots/dockerfile.png)
 
-## Docker Compose
+### Docker Compose
 
-- I added **healthchecks** to make sure the app and database are healthy, not just running.
-- I created a **named volume** to persist database data beyond the container lifecycle.
-- i added **Dependency conditions** prevent the application from starting before MySQL is healthy.
+I used Docker Compose to orchestrate the application and database containers in a local environment.
 
+- **Healthchecks** verify that the application and MySQL are actually healthy rather than only running.
+
+- **Dependency conditions** prevent the application from starting before the database passes its healthcheck.
+
+- A **named Docker volume** provides persistent MySQL storage across container restarts and recreation.
+
+- **Restart policies** improve application resilience by automatically restarting failed containers.
 ![Docker Compose](screenshots/compose.png)
 
 ## CI/CD Pipeline
